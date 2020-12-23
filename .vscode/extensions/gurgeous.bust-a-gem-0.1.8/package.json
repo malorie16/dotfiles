@@ -1,0 +1,104 @@
+{
+	"name": "bust-a-gem",
+	"displayName": "Bust A Gem",
+	"version": "0.1.8",
+	"publisher": "gurgeous",
+	"description": "Go to Definition for Ruby, and quickly open gems.",
+	"icon": "images/icon.png",
+	"galleryBanner": {
+		"color": "#e9573f",
+		"theme": "dark"
+	},
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/gurgeous/bust-a-gem.git"
+	},
+	"engines": {
+		"vscode": "^1.44.0"
+	},
+	"keywords": [
+		"bundler",
+		"gem",
+		"gemfile",
+		"rails",
+		"ruby"
+	],
+	"categories": [
+		"Programming Languages"
+	],
+	"activationEvents": [
+		"onCommand:bust-a-gem.open",
+		"onCommand:bust-a-gem.rebuild",
+		"onLanguage:ruby"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "bust-a-gem.open",
+				"title": "Bust-A-Gem: Open Gem..."
+			},
+			{
+				"command": "bust-a-gem.rebuild",
+				"title": "Bust-A-Gem: Rebuild Tags"
+			}
+		],
+		"configuration": {
+			"title": "Bust-A-Gem settings",
+			"properties": {
+				"bustagem.cmd.bundle": {
+					"type": "string",
+					"default": "bundle show --paths",
+					"description": "Bundler command to list gem paths."
+				},
+				"bustagem.cmd.rip": {
+					"type": "string",
+					"default": "ripper-tags -f TAGS -R --force --extra=q",
+					"description": "Command to create TAGS File."
+				},
+				"bustagem.gems": {
+					"type": "array",
+					"description": "List of gems to index when building TAGS.",
+					"items": {
+						"type": "string"
+					}
+				}
+			}
+		}
+	},
+	"scripts": {
+		"lint": "eslint src --ext ts",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"pretest": "yarn run compile && yarn run lint",
+		"test": "node ./out/test/runTest.js",
+		"vscode:prepublish": "yarn run compile"
+	},
+	"devDependencies": {
+		"@types/glob": "^7.1.1",
+		"@types/mocha": "^7.0.2",
+		"@types/node": "^13.11.0",
+		"@types/sinon": "^9.0.0",
+		"@types/vscode": "^1.44.0",
+		"@typescript-eslint/eslint-plugin": "^2.26.0",
+		"@typescript-eslint/parser": "^2.26.0",
+		"eslint": "^6.8.0",
+		"eslint-plugin-mocha": "^6.3.0",
+		"glob": "^7.1.6",
+		"mocha": "^7.1.1",
+		"sinon": "^9.0.0",
+		"typescript": "^3.8.3",
+		"vscode-test": "^1.3.0"
+	},
+	"prettier": {
+		"printWidth": 100,
+		"singleQuote": true,
+		"trailingComma": "es5"
+	},
+	"__metadata": {
+		"id": "8aff067b-d29c-4e56-a220-cc22a0cafb1d",
+		"publisherId": "d253050f-3bdc-472c-928e-d6257fef0219",
+		"publisherDisplayName": "gurgeous"
+	}
+}
